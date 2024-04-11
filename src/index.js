@@ -48,6 +48,16 @@ function renderMain() {
             renderMain();
         })
         todoElement.appendChild(checkbox);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.dataset.todoIndex = index;
+        deleteButton.addEventListener('click', (e) => {
+            const index = e.target.dataset.todoIndex;
+            currentProject.removeTodo(index);
+            renderMain();
+        })
+        todoElement.appendChild(deleteButton);
     });
 
     const h3 = document.createElement('h3');
