@@ -100,7 +100,7 @@ function renderMain() {
     const h3 = document.createElement('h3');
     h3.textContent = 'New Todo';
     h3.classList.add('is-size-6');
-    mainElement.appendChild(h3);
+    // mainElement.appendChild(h3);
 
     const newTodoForm = document.createElement('form');
     newTodoForm.id = 'new-todo-form';
