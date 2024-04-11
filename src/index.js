@@ -38,6 +38,12 @@ function renderMain() {
     h2.classList.add('subtitle', 'is-4');
     mainElement.appendChild(h2);
 
+    const description = document.createElement('p');
+    description.textContent = currentProject.description;
+    description.id = 'project-description';
+    description.classList.add('has-text-primary');
+    mainElement.appendChild(description);
+
     const todosElement = document.createElement('div');
     todosElement.id = 'todos';
     mainElement.appendChild(todosElement);
