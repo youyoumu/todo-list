@@ -16,7 +16,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.s[ac]ss$/i,
                 use: [
                     'style-loader',
                     {
@@ -25,6 +25,7 @@ module.exports = {
                             sourceMap: false, // Disable source maps for CSS files
                         },
                     },
+                    'sass-loader',
                 ],
             },
         ],
