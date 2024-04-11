@@ -7,6 +7,7 @@ let currentProject = null;
 const newProjectForm = document.getElementById('new-project-form');
 const projectsElement = document.getElementById('projects');
 const mainElement = document.getElementById('main');
+const detailsElement = document.getElementById('details');
 
 function renderProjects() {
     projectsElement.innerHTML = '';
@@ -58,6 +59,15 @@ function renderMain() {
             renderMain();
         })
         todoElement.appendChild(deleteButton);
+
+        const detailsButton = document.createElement('button');
+        detailsButton.textContent = 'Details';
+        detailsButton.dataset.todoIndex = index;
+        detailsButton.addEventListener('click', (e) => {
+            const index = e.target.dataset.todoIndex;
+            renderDetails(currentProject.todos[index]);
+        })
+        todoElement.appendChild(detailsButton);
     });
 
     const h3 = document.createElement('h3');
@@ -122,6 +132,82 @@ function renderMain() {
         currentProject.addTodo(newTodo);
         renderMain();
     })
+}
+
+function renderDetails(todo) {
+    detailsElement.innerHTML = '';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = 'Details';
+    detailsElement.appendChild(h3);
+
+    const detailsForm = document.createElement('form');
+    detailsForm.id = 'details-form';
+    detailsElement.appendChild(detailsForm);
+
+    const titleLabel = document.createElement('label');
+    titleLabel.for = 'details-title';
+    titleLabel.textContent = 'Title';
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.id = 'details-title';
+    titleInput.value = todo.title;
+    detailsForm.appendChild(titleLabel);
+    detailsForm.appendChild(titleInput);
+
+    const descriptionLabel = document.createElement('label');
+    descriptionLabel.for = 'details-description';
+    descriptionLabel.textContent = 'Description';
+    const descriptionInput = document.createElement('input');
+    descriptionInput.type = 'text';
+    descriptionInput.id = 'details-description';
+    descriptionInput.value = todo.description;
+    detailsForm.appendChild(descriptionLabel);
+    detailsForm.appendChild(descriptionInput);
+
+    const dueDateLabel = document.createElement('label');
+    dueDateLabel.for = 'details-due-date';
+    dueDateLabel.textContent = 'Due Date';
+    const dueDateInput = document.createElement('input');
+    dueDateInput.type = 'date';
+    dueDateInput.id = 'details-due-date';
+    dueDateInput.value = todo.dueDate;
+    detailsForm.appendChild(dueDateLabel);
+    detailsForm.appendChild(dueDateInput);
+
+    const priorityLabel = document.createElement('label');
+    priorityLabel.for = 'details-priority';
+    priorityLabel.textContent = 'Priority';
+    const priorityInput = document.createElement('input');
+    priorityInput.type = 'number';
+    priorityInput.id = 'details-priority';
+    priorityInput.value = todo.priority;
+    detailsForm.appendChild(priorityLabel);
+    detailsForm.appendChild(priorityInput);
+
+    const completedLabel = document.createElement('label');
+    completedLabel.for = 'details-completed';
+    completedLabel.textContent = 'Completed';
+    const completedInput = document.createElement('input');
+    completedInput.type = 'checkbox';
+    completedInput.id = 'details-completed';
+    completedInput.checked = todo.completed;
+    detailsForm.appendChild(completedLabel);
+    detailsForm.appendChild(completedInput);
+
+    const updateButton = document.createElement('button');
+    updateButton.type = 'submit';
+    updateButton.textContent = 'Update Todo';
+    updateButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        todo.title = detailsForm.elements['details-title'].value;
+        todo.description = detailsForm.elements['details-description'].value;
+        todo.dueDate = detailsForm.elements['details-due-date'].value;
+        todo.priority = detailsForm.elements['details-priority'].value;
+        todo.completed = detailsForm.elements['details-completed'].checked;
+        renderMain();
+    })
+    detailsForm.appendChild(updateButton);
 }
 
 newProjectForm.addEventListener('submit', (event) => {
