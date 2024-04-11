@@ -1,5 +1,6 @@
 import Todo from './Todo.js';
 import Project from './Project.js';
+import './style.css';
 
 const projects = [];
 let currentProject = null;

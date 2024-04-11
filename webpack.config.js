@@ -13,4 +13,20 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: false, // Disable source maps for CSS files
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 };
