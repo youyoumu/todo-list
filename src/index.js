@@ -13,11 +13,17 @@ const detailsElement = document.getElementById('details');
 function renderProjects() {
     projectsElement.innerHTML = '';
     projects.forEach((project, index) => {
-        const projectElement = document.createElement('div');
+        const projectElement = document.createElement('a');
         projectElement.textContent = project.title;
+        projectElement.classList.add('project');
         projectElement.dataset.projectIndex = index;
         projectElement.addEventListener('click', (e) => {
             currentProject = projects[e.target.dataset.projectIndex];
+            const projectElements = projectsElement.querySelectorAll('.project');
+            projectElements.forEach((projectElement) => {
+                projectElement.classList.remove('is-active');
+            })
+            projectElement.classList.add('is-active');
             renderMain();
         })
         projectsElement.appendChild(projectElement);
