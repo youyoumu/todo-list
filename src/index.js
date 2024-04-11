@@ -201,14 +201,23 @@ function renderMain() {
 function renderDetails(todo, index) {
     detailsElement.innerHTML = '';
     detailsElement.dataset.todoIndex = index;
+    detailsElement.classList.add('is-active');
+
+    const modalBackground = document.createElement('div');
+    modalBackground.classList.add('modal-background');
+    detailsElement.appendChild(modalBackground);
+
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    detailsElement.appendChild(modalContent);
 
     const h3 = document.createElement('h3');
     h3.textContent = 'Details';
-    detailsElement.appendChild(h3);
+    modalContent.appendChild(h3);
 
     const detailsForm = document.createElement('form');
     detailsForm.id = 'details-form';
-    detailsElement.appendChild(detailsForm);
+    modalContent.appendChild(detailsForm);
 
     const titleLabel = document.createElement('label');
     titleLabel.for = 'details-title';
@@ -217,8 +226,8 @@ function renderDetails(todo, index) {
     titleInput.type = 'text';
     titleInput.id = 'details-title';
     titleInput.value = todo.title;
-    detailsForm.appendChild(titleLabel);
-    detailsForm.appendChild(titleInput);
+    modalContent.appendChild(titleLabel);
+    modalContent.appendChild(titleInput);
 
     const descriptionLabel = document.createElement('label');
     descriptionLabel.for = 'details-description';
@@ -227,8 +236,8 @@ function renderDetails(todo, index) {
     descriptionInput.type = 'text';
     descriptionInput.id = 'details-description';
     descriptionInput.value = todo.description;
-    detailsForm.appendChild(descriptionLabel);
-    detailsForm.appendChild(descriptionInput);
+    modalContent.appendChild(descriptionLabel);
+    modalContent.appendChild(descriptionInput);
 
     const dueDateLabel = document.createElement('label');
     dueDateLabel.for = 'details-due-date';
@@ -237,8 +246,8 @@ function renderDetails(todo, index) {
     dueDateInput.type = 'date';
     dueDateInput.id = 'details-due-date';
     dueDateInput.value = todo.dueDate;
-    detailsForm.appendChild(dueDateLabel);
-    detailsForm.appendChild(dueDateInput);
+    modalContent.appendChild(dueDateLabel);
+    modalContent.appendChild(dueDateInput);
 
     const priorityLabel = document.createElement('label');
     priorityLabel.for = 'details-priority';
@@ -247,8 +256,8 @@ function renderDetails(todo, index) {
     priorityInput.type = 'number';
     priorityInput.id = 'details-priority';
     priorityInput.value = todo.priority;
-    detailsForm.appendChild(priorityLabel);
-    detailsForm.appendChild(priorityInput);
+    modalContent.appendChild(priorityLabel);
+    modalContent.appendChild(priorityInput);
 
     const completedLabel = document.createElement('label');
     completedLabel.for = 'details-completed';
@@ -257,12 +266,13 @@ function renderDetails(todo, index) {
     completedInput.type = 'checkbox';
     completedInput.id = 'details-completed';
     completedInput.checked = todo.completed;
-    detailsForm.appendChild(completedLabel);
-    detailsForm.appendChild(completedInput);
+    modalContent.appendChild(completedLabel);
+    modalContent.appendChild(completedInput);
 
     const updateButton = document.createElement('button');
     updateButton.type = 'submit';
     updateButton.textContent = 'Update Todo';
+    updateButton.classList.add('button', 'is-primary');
     updateButton.addEventListener('click', (e) => {
         e.preventDefault();
         todo.title = detailsForm.elements['details-title'].value;
@@ -272,7 +282,15 @@ function renderDetails(todo, index) {
         todo.completed = detailsForm.elements['details-completed'].checked;
         renderMain();
     })
-    detailsForm.appendChild(updateButton);
+    modalContent.appendChild(updateButton);
+
+    const closeButton = document.createElement('button');
+    closeButton.classList.add('modal-close', 'is-large');
+    closeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        detailsElement.classList.remove('is-active');
+    })
+    detailsForm.appendChild(closeButton);
 }
 
 function clearDetails(index) {
