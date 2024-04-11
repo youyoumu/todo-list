@@ -35,7 +35,7 @@ function renderMain() {
     mainElement.innerHTML = '';
     const h2 = document.createElement('h2');
     h2.textContent = currentProject.title;
-    h2.classList.add('is-size-5');
+    h2.classList.add('subtitle', 'is-4');
     mainElement.appendChild(h2);
 
     const todosElement = document.createElement('div');
