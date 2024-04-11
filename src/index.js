@@ -57,6 +57,7 @@ function renderMain() {
             const index = e.target.dataset.todoIndex;
             currentProject.removeTodo(index);
             renderMain();
+            clearDetails(index);
         })
         todoElement.appendChild(deleteButton);
 
@@ -65,7 +66,7 @@ function renderMain() {
         detailsButton.dataset.todoIndex = index;
         detailsButton.addEventListener('click', (e) => {
             const index = e.target.dataset.todoIndex;
-            renderDetails(currentProject.todos[index]);
+            renderDetails(currentProject.todos[index], index);
         })
         todoElement.appendChild(detailsButton);
     });
@@ -134,8 +135,9 @@ function renderMain() {
     })
 }
 
-function renderDetails(todo) {
+function renderDetails(todo, index) {
     detailsElement.innerHTML = '';
+    detailsElement.dataset.todoIndex = index;
 
     const h3 = document.createElement('h3');
     h3.textContent = 'Details';
@@ -208,6 +210,12 @@ function renderDetails(todo) {
         renderMain();
     })
     detailsForm.appendChild(updateButton);
+}
+
+function clearDetails(index) {
+    if (index == detailsElement.dataset.todoIndex) {
+        detailsElement.innerHTML = '';
+    }
 }
 
 newProjectForm.addEventListener('submit', (event) => {
