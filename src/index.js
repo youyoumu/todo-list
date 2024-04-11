@@ -10,6 +10,17 @@ const projectsElement = document.getElementById('projects');
 const mainElement = document.getElementById('main');
 const detailsElement = document.getElementById('details');
 
+if (localStorage.getItem('projects')) {
+    JSON.parse(localStorage.getItem('projects')).forEach((project) => {
+        const newProject = new Project(project._title, project._description);
+        project._todos.forEach((todo) => {
+            newProject.addTodo(new Todo(todo._title, todo._description, todo._dueDate, todo._priority, todo._completed));
+        })
+        projects.push(newProject);
+    })
+    renderProjects();
+}
+
 function renderProjects() {
     projectsElement.innerHTML = '';
     projects.forEach((project, index) => {
@@ -79,6 +90,7 @@ function renderMain() {
             const index = e.target.dataset.todoIndex;
             currentProject.todos[index].toggleCompleted();
             renderMain();
+            save();
         })
         label.prepend(checkbox);
 
@@ -105,6 +117,7 @@ function renderMain() {
             currentProject.removeTodo(index);
             renderMain();
             clearDetails(index);
+            save();
         })
 
         const detailsButton = document.createElement('button');
@@ -212,6 +225,7 @@ function renderMain() {
         const newTodo = new Todo(title, description, dueDate, priority);
         currentProject.addTodo(newTodo);
         renderMain();
+        save();
     })
 }
 
@@ -333,6 +347,7 @@ function renderDetails(todo, index) {
         todo.priority = detailsForm.elements['details-priority'].value;
         todo.completed = detailsForm.elements['details-completed'].checked;
         renderMain();
+        save();
     })
     modalContent.appendChild(updateButton);
 
@@ -351,6 +366,10 @@ function clearDetails(index) {
     }
 }
 
+function save() {
+    localStorage.setItem('projects', JSON.stringify(projects));
+}
+
 newProjectForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const title = newProjectForm.elements['project-title'].value;
@@ -359,4 +378,5 @@ newProjectForm.addEventListener('submit', (event) => {
     projects.push(newProject);
     renderProjects();
     newProjectForm.reset();
+    save();
 })
