@@ -49,6 +49,18 @@ function renderMain() {
     h2.classList.add('subtitle', 'is-4');
     mainElement.appendChild(h2);
 
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete Project';
+    deleteButton.classList.add('button', 'is-danger');
+    deleteButton.addEventListener('click', () => {
+        projects.splice(currentProject, 1);
+        currentProject = null;
+        renderProjects();
+        mainElement.innerHTML = '';
+        save();
+    })
+    mainElement.appendChild(deleteButton);
+
     const description = document.createElement('p');
     description.textContent = currentProject.description;
     description.id = 'project-description';
