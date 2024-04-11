@@ -24,6 +24,7 @@ function renderProjects() {
                 projectElement.classList.remove('is-active');
             })
             projectElement.classList.add('is-active');
+            detailsElement.innerHTML = '';
             renderMain();
         })
         projectsElement.appendChild(projectElement);
