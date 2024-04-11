@@ -208,17 +208,22 @@ function renderDetails(todo, index) {
     detailsElement.appendChild(modalBackground);
 
     const modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
+    modalContent.classList.add('modal-content', 'box');
     detailsElement.appendChild(modalContent);
 
     const h3 = document.createElement('h3');
     h3.textContent = 'Details';
+    h3.classList.add('subtitle', 'is-4');
     modalContent.appendChild(h3);
 
     const detailsForm = document.createElement('form');
     detailsForm.id = 'details-form';
     modalContent.appendChild(detailsForm);
 
+    const titleField = document.createElement('div');
+    titleField.classList.add('field');
+    const titleControl = document.createElement('div');
+    titleControl.classList.add('control');
     const titleLabel = document.createElement('label');
     titleLabel.for = 'details-title';
     titleLabel.textContent = 'Title';
@@ -226,9 +231,16 @@ function renderDetails(todo, index) {
     titleInput.type = 'text';
     titleInput.id = 'details-title';
     titleInput.value = todo.title;
-    modalContent.appendChild(titleLabel);
-    modalContent.appendChild(titleInput);
+    titleInput.classList.add('input');
+    titleField.appendChild(titleLabel);
+    titleField.appendChild(titleControl);
+    titleControl.appendChild(titleInput);
+    detailsForm.appendChild(titleField);
 
+    const descriptionField = document.createElement('div');
+    descriptionField.classList.add('field');
+    const descriptionControl = document.createElement('div');
+    descriptionControl.classList.add('control');
     const descriptionLabel = document.createElement('label');
     descriptionLabel.for = 'details-description';
     descriptionLabel.textContent = 'Description';
@@ -236,9 +248,16 @@ function renderDetails(todo, index) {
     descriptionInput.type = 'text';
     descriptionInput.id = 'details-description';
     descriptionInput.value = todo.description;
-    modalContent.appendChild(descriptionLabel);
-    modalContent.appendChild(descriptionInput);
+    descriptionInput.classList.add('input');
+    descriptionField.appendChild(descriptionLabel);
+    descriptionField.appendChild(descriptionControl);
+    descriptionControl.appendChild(descriptionInput);
+    detailsForm.appendChild(descriptionField);
 
+    const dueDateField = document.createElement('div');
+    dueDateField.classList.add('field');
+    const dueDateControl = document.createElement('div');
+    dueDateControl.classList.add('control');
     const dueDateLabel = document.createElement('label');
     dueDateLabel.for = 'details-due-date';
     dueDateLabel.textContent = 'Due Date';
@@ -246,9 +265,16 @@ function renderDetails(todo, index) {
     dueDateInput.type = 'date';
     dueDateInput.id = 'details-due-date';
     dueDateInput.value = todo.dueDate;
-    modalContent.appendChild(dueDateLabel);
-    modalContent.appendChild(dueDateInput);
+    dueDateInput.classList.add('input');
+    dueDateField.appendChild(dueDateLabel);
+    dueDateField.appendChild(dueDateControl);
+    dueDateControl.appendChild(dueDateInput);
+    detailsForm.appendChild(dueDateField);
 
+    const priorityField = document.createElement('div');
+    priorityField.classList.add('field');
+    const priorityControl = document.createElement('div');
+    priorityControl.classList.add('control');
     const priorityLabel = document.createElement('label');
     priorityLabel.for = 'details-priority';
     priorityLabel.textContent = 'Priority';
@@ -256,9 +282,16 @@ function renderDetails(todo, index) {
     priorityInput.type = 'number';
     priorityInput.id = 'details-priority';
     priorityInput.value = todo.priority;
-    modalContent.appendChild(priorityLabel);
-    modalContent.appendChild(priorityInput);
+    priorityInput.classList.add('input');
+    priorityField.appendChild(priorityLabel);
+    priorityField.appendChild(priorityControl);
+    priorityControl.appendChild(priorityInput);
+    detailsForm.appendChild(priorityField);
 
+    const completedField = document.createElement('div');
+    completedField.classList.add('field');
+    const completedControl = document.createElement('div');
+    completedControl.classList.add('control');
     const completedLabel = document.createElement('label');
     completedLabel.for = 'details-completed';
     completedLabel.textContent = 'Completed';
@@ -266,8 +299,10 @@ function renderDetails(todo, index) {
     completedInput.type = 'checkbox';
     completedInput.id = 'details-completed';
     completedInput.checked = todo.completed;
-    modalContent.appendChild(completedLabel);
-    modalContent.appendChild(completedInput);
+    completedField.appendChild(completedLabel);
+    completedField.appendChild(completedControl);
+    completedControl.appendChild(completedInput);
+    detailsForm.appendChild(completedField);
 
     const updateButton = document.createElement('button');
     updateButton.type = 'submit';
