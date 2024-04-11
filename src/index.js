@@ -76,6 +76,17 @@ function renderTodos() {
     submitButton.textContent = 'Add Todo';
     newTodoForm.appendChild(submitButton);
 
+    newTodoForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const title = newTodoForm.elements['title'].value;
+        const description = newTodoForm.elements['description'].value;
+        const dueDate = newTodoForm.elements['due-date'].value;
+        const priority = newTodoForm.elements['priority'].value;
+        const newTodo = new Todo(title, description, dueDate, priority);
+        currentProject.addTodo(newTodo);
+        renderTodos();
+    })
+
     currentProject.todos.forEach((todo, index) => {
         const todoElement = document.createElement('div');
         todoElement.textContent = todo.title;
