@@ -16,6 +16,7 @@ if (localStorage.getItem('projects')) {
         project._todos.forEach((todo) => {
             newProject.addTodo(new Todo(todo._title, todo._description, todo._dueDate, todo._priority, todo._completed));
         })
+        console.log(newProject);
         projects.push(newProject);
     })
     renderProjects();
