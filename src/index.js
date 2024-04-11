@@ -61,13 +61,18 @@ function renderMain() {
         todosElement.appendChild(card);
 
         const todoElement = document.createElement('div');
-        todoElement.textContent = todo.title;
         todoElement.dataset.todoIndex = index;
         todoElement.classList.add('card-content');
         card.appendChild(todoElement);
 
+        const label = document.createElement('label');
+        label.classList.add('checkbox', 'is-size-5');
+        label.textContent = todo.title;
+        todoElement.appendChild(label);
+
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
+        checkbox.classList.add('mr-2');
         checkbox.dataset.todoIndex = index;
         checkbox.checked = todo.completed;
         checkbox.addEventListener('change', (e) => {
@@ -75,7 +80,17 @@ function renderMain() {
             currentProject.todos[index].toggleCompleted();
             renderMain();
         })
-        todoElement.prepend(checkbox);
+        label.prepend(checkbox);
+
+        const description = document.createElement('p');
+        description.textContent = todo.description;
+        description.classList.add('has-text-primary', 'is-size-6');
+        todoElement.appendChild(description);
+
+        const dueDate = document.createElement('p');
+        dueDate.textContent = todo.dueDate;
+        dueDate.classList.add('has-text-primary', 'is-size-7');
+        todoElement.appendChild(dueDate);
 
         const buttonContainer = document.createElement('div');
         buttonContainer.classList.add('buttons-container');
