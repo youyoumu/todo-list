@@ -90,11 +90,13 @@ function renderMain() {
     });
 
     const h3 = document.createElement('h3');
-    h3.textContent = 'Add Todo';
+    h3.textContent = 'New Todo';
+    h3.classList.add('is-size-4');
     mainElement.appendChild(h3);
 
     const newTodoForm = document.createElement('form');
     newTodoForm.id = 'new-todo-form';
+    newTodoForm.classList.add('box');
     mainElement.appendChild(newTodoForm);
 
     const titleLabel = document.createElement('label');
@@ -139,6 +141,7 @@ function renderMain() {
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
     submitButton.textContent = 'Add Todo';
+    submitButton.classList.add('button', 'is-primary');
     newTodoForm.appendChild(submitButton);
 
     newTodoForm.addEventListener('submit', (event) => {
