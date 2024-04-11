@@ -33,3 +33,5 @@ class Project {
         this._todos.splice(index, 1);
     }
 }
+
+export default Project;
