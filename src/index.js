@@ -34,6 +34,7 @@ function renderMain() {
     mainElement.innerHTML = '';
     const h2 = document.createElement('h2');
     h2.textContent = currentProject.title;
+    h2.classList.add('is-size-5');
     mainElement.appendChild(h2);
 
     const todosElement = document.createElement('div');
@@ -41,10 +42,15 @@ function renderMain() {
     mainElement.appendChild(todosElement);
 
     currentProject.todos.forEach((todo, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        todosElement.appendChild(card);
+
         const todoElement = document.createElement('div');
         todoElement.textContent = todo.title;
         todoElement.dataset.todoIndex = index;
-        todosElement.appendChild(todoElement);
+        todoElement.classList.add('card-content');
+        card.appendChild(todoElement);
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -55,10 +61,14 @@ function renderMain() {
             currentProject.todos[index].toggleCompleted();
             renderMain();
         })
-        todoElement.appendChild(checkbox);
+        todoElement.prepend(checkbox);
+
+        const buttonContainer = document.createElement('div');
+        todoElement.appendChild(buttonContainer);
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('button', 'is-danger', 'is-small');
         deleteButton.dataset.todoIndex = index;
         deleteButton.addEventListener('click', (e) => {
             const index = e.target.dataset.todoIndex;
@@ -66,16 +76,17 @@ function renderMain() {
             renderMain();
             clearDetails(index);
         })
-        todoElement.appendChild(deleteButton);
+        buttonContainer.appendChild(deleteButton);
 
         const detailsButton = document.createElement('button');
         detailsButton.textContent = 'Details';
+        detailsButton.classList.add('button', 'is-info', 'is-small');
         detailsButton.dataset.todoIndex = index;
         detailsButton.addEventListener('click', (e) => {
             const index = e.target.dataset.todoIndex;
             renderDetails(currentProject.todos[index], index);
         })
-        todoElement.appendChild(detailsButton);
+        buttonContainer.appendChild(detailsButton);
     });
 
     const h3 = document.createElement('h3');
