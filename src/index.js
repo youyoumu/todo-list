@@ -6,6 +6,7 @@ let currentProject = null;
 
 const newProjectForm = document.getElementById('new-project-form');
 const projectsElement = document.getElementById('projects');
+const mainElement = document.getElementById('main');
 
 function renderProjects() {
     projectsElement.innerHTML = '';
@@ -15,22 +16,21 @@ function renderProjects() {
         projectElement.dataset.projectIndex = index;
         projectElement.addEventListener('click', (e) => {
             currentProject = projects[e.target.dataset.projectIndex];
-            renderTodos();
+            renderMain();
         })
         projectsElement.appendChild(projectElement);
     });
 }
 
-function renderTodos() {
-    const todosElement = document.getElementById('todos');
-    todosElement.innerHTML = '';
+function renderMain() {
+    mainElement.innerHTML = '';
     const h2 = document.createElement('h2');
     h2.textContent = currentProject.title;
-    todosElement.appendChild(h2);
+    mainElement.appendChild(h2);
 
     const newTodoForm = document.createElement('form');
     newTodoForm.id = 'new-todo-form';
-    todosElement.appendChild(newTodoForm);
+    mainElement.appendChild(newTodoForm);
 
     const titleLabel = document.createElement('label');
     titleLabel.for = 'title';
@@ -84,8 +84,12 @@ function renderTodos() {
         const priority = newTodoForm.elements['priority'].value;
         const newTodo = new Todo(title, description, dueDate, priority);
         currentProject.addTodo(newTodo);
-        renderTodos();
+        renderMain();
     })
+
+    const todosElement = document.createElement('div');
+    todosElement.id = 'todos';
+    mainElement.appendChild(todosElement);
 
     currentProject.todos.forEach((todo, index) => {
         const todoElement = document.createElement('div');
