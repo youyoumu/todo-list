@@ -23,6 +23,13 @@ if (localStorage.getItem('projects')) {
 
 function renderProjects() {
     projectsElement.innerHTML = '';
+
+    if (projects.length == 0) {
+        const p = document.createElement('p');
+        p.textContent = 'No projects yet. Create one by clicking the "Add Project" button.';
+        projectsElement.appendChild(p);
+    }
+
     projects.forEach((project, index) => {
         const projectElement = document.createElement('a');
         projectElement.textContent = project.title;
@@ -51,7 +58,7 @@ function renderMain() {
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete Project';
-    deleteButton.classList.add('button', 'is-danger');
+    deleteButton.classList.add('button', 'is-danger', 'mb-2');
     deleteButton.addEventListener('click', () => {
         projects.splice(currentProject, 1);
         currentProject = null;
