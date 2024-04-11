@@ -37,6 +37,17 @@ function renderMain() {
         todoElement.textContent = todo.title;
         todoElement.dataset.todoIndex = index;
         todosElement.appendChild(todoElement);
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.dataset.todoIndex = index;
+        checkbox.checked = todo.completed;
+        checkbox.addEventListener('change', (e) => {
+            const index = e.target.dataset.todoIndex;
+            currentProject.todos[index].toggleCompleted();
+            renderMain();
+        })
+        todoElement.appendChild(checkbox);
     });
 
     const h3 = document.createElement('h3');
