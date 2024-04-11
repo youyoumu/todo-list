@@ -8,7 +8,24 @@
 </head>
 
 <body>
-
+    <h1>Todo List</h1>
+    <div id="app">
+        <div id="sidebar">
+            <h2>New Project</h2>
+            <form id="new-project-form">
+                <label for="project-title">Project Title</label>
+                <input type="text" id="project-title"></label>
+                <label for="project-description">Project Description</label>
+                <input type="text" id="project-description"></label>
+                <button type="submit">Add Project</button>
+            </form>
+            <h2>Projects</h2>
+            <div id="projects">
+                <p>No projects yet. Create one by clicking the "Add Project" button.</p>
+            </div>
+        </div>
+        <div id="todos"></div>
+    </div>
 </body>
 
 </html>
