@@ -28,6 +28,21 @@ function renderMain() {
     h2.textContent = currentProject.title;
     mainElement.appendChild(h2);
 
+    const todosElement = document.createElement('div');
+    todosElement.id = 'todos';
+    mainElement.appendChild(todosElement);
+
+    currentProject.todos.forEach((todo, index) => {
+        const todoElement = document.createElement('div');
+        todoElement.textContent = todo.title;
+        todoElement.dataset.todoIndex = index;
+        todosElement.appendChild(todoElement);
+    });
+
+    const h3 = document.createElement('h3');
+    h3.textContent = 'Add Todo';
+    mainElement.appendChild(h3);
+
     const newTodoForm = document.createElement('form');
     newTodoForm.id = 'new-todo-form';
     mainElement.appendChild(newTodoForm);
@@ -86,17 +101,6 @@ function renderMain() {
         currentProject.addTodo(newTodo);
         renderMain();
     })
-
-    const todosElement = document.createElement('div');
-    todosElement.id = 'todos';
-    mainElement.appendChild(todosElement);
-
-    currentProject.todos.forEach((todo, index) => {
-        const todoElement = document.createElement('div');
-        todoElement.textContent = todo.title;
-        todoElement.dataset.todoIndex = index;
-        todosElement.appendChild(todoElement);
-    });
 }
 
 newProjectForm.addEventListener('submit', (event) => {
