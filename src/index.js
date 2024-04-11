@@ -78,6 +78,7 @@ function renderMain() {
         todoElement.prepend(checkbox);
 
         const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('buttons-container');
         todoElement.appendChild(buttonContainer);
 
         const deleteButton = document.createElement('button');
@@ -90,7 +91,6 @@ function renderMain() {
             renderMain();
             clearDetails(index);
         })
-        buttonContainer.appendChild(deleteButton);
 
         const detailsButton = document.createElement('button');
         detailsButton.textContent = 'Details';
@@ -100,7 +100,9 @@ function renderMain() {
             const index = e.target.dataset.todoIndex;
             renderDetails(currentProject.todos[index], index);
         })
+
         buttonContainer.appendChild(detailsButton);
+        buttonContainer.appendChild(deleteButton);
     });
 
     const h3 = document.createElement('h3');
