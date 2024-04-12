@@ -1,55 +1,55 @@
 class Todo {
-    constructor(title, description, dueDate, priority, completed = false) {
-        this._title = title;
-        this._description = description;
-        this._dueDate = dueDate;
-        this._priority = priority;
-        this._completed = completed;
-    }
+  constructor (title, description, dueDate, priority, completed = false) {
+    this._title = title
+    this._description = description
+    this._dueDate = dueDate
+    this._priority = priority
+    this._completed = completed
+  }
 
-    toggleCompleted() {
-        this.completed = !this.completed;
-    }
+  toggleCompleted () {
+    this.completed = !this.completed
+  }
 
-    get title() {
-        return this._title;
-    }
+  get title () {
+    return this._title
+  }
 
-    set title(newTitle) {
-        this._title = newTitle;
-    }
+  set title (newTitle) {
+    this._title = newTitle
+  }
 
-    get description() {
-        return this._description;
-    }
+  get description () {
+    return this._description
+  }
 
-    set description(newDescription) {
-        this._description = newDescription;
-    }
+  set description (newDescription) {
+    this._description = newDescription
+  }
 
-    get dueDate() {
-        return this._dueDate;
-    }
+  get dueDate () {
+    return this._dueDate
+  }
 
-    set dueDate(newDueDate) {
-        this._dueDate = newDueDate;
-    }
+  set dueDate (newDueDate) {
+    this._dueDate = newDueDate
+  }
 
-    get priority() {
-        return this._priority;
-    }
+  get priority () {
+    return this._priority
+  }
 
-    set priority(newPriority) {
-        this._priority = newPriority;
-    }
+  set priority (newPriority) {
+    this._priority = newPriority
+  }
 
-    get completed() {
-        return this._completed;
-    }
+  get completed () {
+    return this._completed
+  }
 
-    set completed(newCompleted) {
-        this._completed = newCompleted;
-    }
+  set completed (newCompleted) {
+    this._completed = newCompleted
+  }
 }
 
-export default Todo;
+export default Todo
