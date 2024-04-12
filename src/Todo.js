@@ -1,5 +1,5 @@
 class Todo {
-  constructor (title, description, dueDate, priority, completed = false) {
+  constructor(title, description, dueDate, priority, completed = false) {
     this._title = title
     this._description = description
     this._dueDate = dueDate
@@ -7,47 +7,47 @@ class Todo {
     this._completed = completed
   }
 
-  toggleCompleted () {
+  toggleCompleted() {
     this.completed = !this.completed
   }
 
-  get title () {
+  get title() {
     return this._title
   }
 
-  set title (newTitle) {
+  set title(newTitle) {
     this._title = newTitle
   }
 
-  get description () {
+  get description() {
     return this._description
   }
 
-  set description (newDescription) {
+  set description(newDescription) {
     this._description = newDescription
   }
 
-  get dueDate () {
+  get dueDate() {
     return this._dueDate
   }
 
-  set dueDate (newDueDate) {
+  set dueDate(newDueDate) {
     this._dueDate = newDueDate
   }
 
-  get priority () {
+  get priority() {
     return this._priority
   }
 
-  set priority (newPriority) {
+  set priority(newPriority) {
     this._priority = newPriority
   }
 
-  get completed () {
+  get completed() {
     return this._completed
   }
 
-  set completed (newCompleted) {
+  set completed(newCompleted) {
     this._completed = newCompleted
   }
 }

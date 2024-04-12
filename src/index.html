@@ -1,45 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app" class="container">
-        <h1 class="title is-1">Todo List</h1>
-        <div id="sidebar">
-            <h2 class="subtitle is-4">New Project</h2>
-            <form id="new-project-form" class="box">
-                <div class="field">
-                    <label for="project-title">Project Title</label>
-                    <div class="control">
-                        <input class="input" type="text" id="project-title" value="Untitled Project" required="">
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="project-description">Project Description</label>
-                    <div class="control">
-                        <input class="input" type="text" id="project-description">
-                    </div>
-                </div>
-                <button type="submit" class="button is-primary">Add Project</button>
-            </form>
-            <aside class="menu">
-                <h2 class="subtitle is-4">Projects</h2>
-                <div id="projects" class="menu-list box">
-                    <p>No projects yet. Create one by clicking the "Add Project" button.</p>
-                </div>
-            </aside>
-        </div>
-        <div id="main">
-        </div>
-        <div id="details" class="modal">
-
-        </div>
+      <h1 class="title is-1">Todo List</h1>
+      <div id="sidebar">
+        <h2 class="subtitle is-4">New Project</h2>
+        <form id="new-project-form" class="box">
+          <div class="field">
+            <label for="project-title">Project Title</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                id="project-title"
+                value="Untitled Project"
+                required=""
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label for="project-description">Project Description</label>
+            <div class="control">
+              <input class="input" type="text" id="project-description" />
+            </div>
+          </div>
+          <button type="submit" class="button is-primary">Add Project</button>
+        </form>
+        <aside class="menu">
+          <h2 class="subtitle is-4">Projects</h2>
+          <div id="projects" class="menu-list box">
+            <p>
+              No projects yet. Create one by clicking the "Add Project" button.
+            </p>
+          </div>
+        </aside>
+      </div>
+      <div id="main"></div>
+      <div id="details" class="modal"></div>
     </div>
-</body>
-
+  </body>
 </html>
